@@ -26,6 +26,7 @@ public class StartStage extends BaseStage {
 
     public StartStage(MainGame mainGame, Viewport viewport) {
         super(mainGame, viewport);
+        init();
     }
 
     @Override

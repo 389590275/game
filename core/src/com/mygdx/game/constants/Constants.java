@@ -8,7 +8,10 @@ public class Constants {
 
     // 屏幕16:10
     public static final int UNIT = 48;
-    public static final int WIDTH = 16 * UNIT;
-    public static final int HIGH = 10 * UNIT;
+
+    public static final int MAX_X = 16;
+    public static final int MAX_Y = 10;
+    public static final int WIDTH = MAX_X * UNIT;
+    public static final int HIGH = MAX_Y * UNIT;
 
 }

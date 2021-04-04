@@ -1,13 +1,19 @@
 package com.mygdx.game.player;
 
 import com.badlogic.gdx.Input;
-import com.mygdx.game.stage.GameStage;
+import com.badlogic.gdx.graphics.g2d.Animation;
+import com.badlogic.gdx.graphics.g2d.TextureRegion;
+import com.mygdx.game.manager.CacheManager;
 import com.mygdx.game.state.IState;
+import lombok.Getter;
+import lombok.Setter;
 
 /**
  * @author xiangchijie
  * @date 2021/4/4 5:46 下午
  */
+@Getter
+@Setter
 public class Player {
 
     //绝对坐标
@@ -15,6 +21,7 @@ public class Player {
 
     private int y;
 
+    //点 格子坐标
     private int[] p = new int[2];
 
     //状态刷新时间 s
@@ -24,6 +31,8 @@ public class Player {
 
     // 1上 2左 3下 4右
     private int direction;
+
+    private Animation<TextureRegion> playerAnimation;
 
 
     public boolean updateDir(int keycode) {
@@ -42,57 +51,12 @@ public class Player {
                 point[0]++;
                 break;
         }
+        if (!CacheManager.INSTANCE.isAccept(point[0], point[1])) {
+            return false;
+        }
         p = point;
         this.direction = keycode;
         return true;
     }
 
-    public int getX() {
-        return x;
-    }
-
-    public void setX(int x) {
-        this.x = x;
-    }
-
-    public int getY() {
-        return y;
-    }
-
-    public void setY(int y) {
-        this.y = y;
-    }
-
-    public int[] getP() {
-        return p;
-    }
-
-    public void setP(int[] p) {
-        this.p = p;
-    }
-
-    public float getStateTime() {
-        return stateTime;
-    }
-
-    public void setStateTime(float stateTime) {
-        this.stateTime = stateTime;
-    }
-
-    public IState getState() {
-        return state;
-    }
-
-    public void setState(IState state) {
-        this.state = state;
-        stateTime = 0;
-    }
-
-    public int getDirection() {
-        return direction;
-    }
-
-    public void setDirection(int direction) {
-        this.direction = direction;
-    }
 }

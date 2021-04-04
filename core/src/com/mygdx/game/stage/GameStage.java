@@ -23,6 +23,7 @@ public class GameStage extends BaseStage {
 
     public GameStage(MainGame mainGame, Viewport viewport) {
         super(mainGame, viewport);
+        init();
     }
 
     @Override
@@ -48,7 +49,7 @@ public class GameStage extends BaseStage {
                 String name = Res.Block.blockNames[blockIndex];
                 Image blockImage = new Image(ResManager.findBlockTexture(name));
                 blockImage.setX(x * Constants.UNIT);
-                blockImage.setY((9 - y) * Constants.UNIT);
+                blockImage.setY(y * Constants.UNIT);
                 addActor(blockImage);
             }
         }

@@ -19,7 +19,6 @@ public abstract class BaseStage extends Stage {
     public BaseStage(MainGame mainGame, Viewport viewport) {
         super(viewport);
         this.mainGame = mainGame;
-        init();
     }
 
     public abstract void init();
