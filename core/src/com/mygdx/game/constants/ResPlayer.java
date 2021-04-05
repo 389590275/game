@@ -26,24 +26,32 @@ public class ResPlayer {
         return String.format(PLAYER_PATH, id);
     }
 
-    public static TextureRegion[] getStandTextureRegion(int pid) {
-        return getTextureRegionArr(pid, 1, 4);
+    public static TextureRegion[] getStandTextureRegion(int pid, boolean flip) {
+        return getTextureRegionArr(pid, 1, 4,flip);
     }
 
-    public static TextureRegion[] getRunTextureRegion(int pid) {
-        return getTextureRegionArr(pid, 6, 9);
+    public static TextureRegion[] getRunTextureRegion(int pid, boolean flip) {
+        return getTextureRegionArr(pid, 6, 9, flip);
     }
 
-    public static TextureRegion[] getAtkTextureRegion(int pid) {
-        return getTextureRegionArr(pid, 10, 14);
+    public static TextureRegion[] getAtkTextureRegion(int pid, boolean flip) {
+        return getTextureRegionArr(pid, 10, 14, flip);
     }
 
-    private static TextureRegion[] getTextureRegionArr(int pid, int start, int end) {
+    private static TextureRegion[] getTextureRegionArr(int pid, int start, int end, boolean flip) {
         TextureRegion[] frames = new TextureRegion[end - start + 1];
         for (int i = start; i <= end; i++) {
-            frames[i - start] = ResManager.findPlayerTexture(pid, i);
+            TextureRegion textureRegion = ResManager.findPlayerTexture(pid, i);
+            if(textureRegion.isFlipX()){
+                if (!flip) {
+                    textureRegion.flip(true, false);
+                }
+            }else if(flip){
+                textureRegion.flip(true, false);
+            }
+            frames[i - start] = textureRegion;
         }
         return frames;
     }
-
 }
+

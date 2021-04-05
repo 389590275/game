@@ -18,4 +18,7 @@ public class Res {
 
     public static final String BLOCK_PRE = "block";
 
+    public static final String BATTLE_BJ1 = "battle_bj1.png";
+
+
 }

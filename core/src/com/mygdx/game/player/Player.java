@@ -3,7 +3,7 @@ package com.mygdx.game.player;
 import com.badlogic.gdx.Input;
 import com.badlogic.gdx.graphics.g2d.Animation;
 import com.badlogic.gdx.graphics.g2d.TextureRegion;
-import com.mygdx.game.manager.CacheManager;
+import com.mygdx.game.constants.Constants;
 import com.mygdx.game.player.state.IPlayerState;
 import lombok.Getter;
 import lombok.Setter;
@@ -21,42 +21,34 @@ public class Player {
 
     private int y;
 
-    //点 格子坐标
-    private int[] p = new int[2];
-
     //状态刷新时间 s
     private float stateTime;
 
     private IPlayerState state;
 
     // 1上 2左 3下 4右
-    private int direction;
+    private int direction = Input.Keys.RIGHT;
 
     private Animation<TextureRegion> playerAnimation;
 
+    //速度
+    private int v;
 
-    public boolean updateDir(int keycode) {
-        int[] point = {p[0], p[1]};
-        switch (keycode) {
-            case Input.Keys.UP:
-                point[1]++;
-                break;
-            case Input.Keys.DOWN:
-                point[1]--;
-                break;
-            case Input.Keys.LEFT:
-                point[0]--;
-                break;
-            case Input.Keys.RIGHT:
-                point[0]++;
-                break;
+    public boolean isFlip() {
+        return direction == Input.Keys.LEFT;
+    }
+
+    /**
+     * 获取攻击范围
+     *
+     * @return
+     */
+    public int[] getAtkXRange() {
+        if (direction == Input.Keys.RIGHT) {
+            return new int[]{x + Constants.ROLE_WIDTH, +x + Constants.ROLE_WIDTH + Constants.ATK_RANGE};
+        } else {
+            return new int[]{x, +x - Constants.ATK_RANGE};
         }
-        if (!CacheManager.INSTANCE.isAccept(point[0], point[1])) {
-            return false;
-        }
-        p = point;
-        this.direction = keycode;
-        return true;
     }
 
 }

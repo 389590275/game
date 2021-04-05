@@ -39,7 +39,7 @@ public class PlayerActor extends Actor implements Disposable {
 
             @Override
             public boolean keyUp(InputEvent event, int keycode) {
-                player.getState().keyDown(event, keycode);
+                player.getState().keyUp(event, keycode);
                 return false;
             }
         });
@@ -52,9 +52,9 @@ public class PlayerActor extends Actor implements Disposable {
         // 得到下一帧
         TextureRegion currentFrame = player.getPlayerAnimation().getKeyFrame(player.getStateTime(), true); // 循环
         // 以(0,0)绘制为起点（左下角为100，100）画出动画，大小128*128
-        float h = (float) Constants.UNIT / currentFrame.getRegionWidth() * currentFrame.getRegionHeight();
-        batch.draw(currentFrame, player.getX() - 16, player.getY(),
-                Constants.UNIT * 1.5f, h * 1.5f);
+        float h = (float) Constants.ROLE_WIDTH / currentFrame.getRegionWidth() * currentFrame.getRegionHeight();
+        batch.draw(currentFrame, player.getX(),  Constants.ROLE_Y,
+                Constants.ROLE_WIDTH, h );
     }
 
     @Override

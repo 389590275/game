@@ -5,8 +5,11 @@ import com.badlogic.gdx.graphics.g2d.TextureRegion;
 import com.badlogic.gdx.scenes.scene2d.InputEvent;
 import com.mygdx.game.constants.ResPlayer;
 import com.mygdx.game.manager.CacheManager;
+import com.mygdx.game.monster.Monster;
 import com.mygdx.game.player.Player;
 import com.mygdx.game.player.PlayerActor;
+
+import java.util.List;
 
 /**
  * @author xiangchijie
@@ -18,7 +21,7 @@ public class AtkPlayerState implements IPlayerState {
     int frameNum;
 
     public AtkPlayerState() {
-        TextureRegion[] frames = ResPlayer.getAtkTextureRegion(PlayerActor.PID);
+        TextureRegion[] frames = ResPlayer.getAtkTextureRegion(PlayerActor.PID, player.isFlip());
         frameNum = frames.length;
         // 使用关键帧（纹理区域）数组 walkFrames 创建一个动画实例, 每一帧（一个小人单元格/纹理区域）播放 0.05 秒
         Animation<TextureRegion> playerAnimation = new Animation<TextureRegion>(0.1F, frames);
@@ -40,9 +43,12 @@ public class AtkPlayerState implements IPlayerState {
     @Override
     public void update() {
         if (player.getStateTime() > frameNum * 0.1f) {
+            int[] xRange = player.getAtkXRange();
+            List<Monster> monsters = CacheManager.INSTANCE.getMonsterByXRange(xRange[0], xRange[1]);
+            for(Monster monster: monsters){
+                CacheManager.INSTANCE.monsterMap.remove(monster.getMid());
+            }
             //击杀怪物
-            int targetMid = (player.getP()[0] + 1) * 100 + player.getP()[1];
-            CacheManager.INSTANCE.monsterMap.remove(targetMid);
             player.setState(new StandPlayerState());
         }
     }

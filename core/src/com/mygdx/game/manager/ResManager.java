@@ -18,6 +18,7 @@ public class ResManager {
         ASSET_MANAGER.load(Res.START_BJ, Texture.class);
         ASSET_MANAGER.load(Res.START_BTN, Texture.class);
         ASSET_MANAGER.load(Res.BLOCKS, TextureAtlas.class);
+        ASSET_MANAGER.load(Res.BATTLE_BJ1, Texture.class);
         for (int i = 1; i <= ResPlayer.PLAYER_SIZE; i++) {
             ASSET_MANAGER.load(ResPlayer.getPlayerPath(i), TextureAtlas.class);
         }
