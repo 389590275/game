@@ -3,6 +3,7 @@ package com.mygdx.game.manager;
 import com.badlogic.gdx.assets.AssetManager;
 import com.badlogic.gdx.graphics.Texture;
 import com.badlogic.gdx.graphics.g2d.TextureAtlas;
+import com.mygdx.game.constants.ResPlayer;
 import com.mygdx.game.constants.Res;
 
 /**
@@ -17,8 +18,8 @@ public class ResManager {
         ASSET_MANAGER.load(Res.START_BJ, Texture.class);
         ASSET_MANAGER.load(Res.START_BTN, Texture.class);
         ASSET_MANAGER.load(Res.BLOCKS, TextureAtlas.class);
-        for (int i = 1; i <= Res.Player.PLAYER_SIZE; i++) {
-            ASSET_MANAGER.load(Res.Player.getPlayerPath(i), TextureAtlas.class);
+        for (int i = 1; i <= ResPlayer.PLAYER_SIZE; i++) {
+            ASSET_MANAGER.load(ResPlayer.getPlayerPath(i), TextureAtlas.class);
         }
         // 等待资源加载完毕
         ASSET_MANAGER.finishLoading();
@@ -46,7 +47,7 @@ public class ResManager {
      */
     public static TextureAtlas.AtlasRegion findPlayerTexture(int pid, int index) {
         String indexName = index < 10 ? "0" + index : "" + index;
-        TextureAtlas textureAtlas = ASSET_MANAGER.get(Res.Player.getPlayerPath(pid), TextureAtlas.class);
+        TextureAtlas textureAtlas = ASSET_MANAGER.get(ResPlayer.getPlayerPath(pid), TextureAtlas.class);
         return textureAtlas.findRegion(indexName);
     }
 

@@ -4,7 +4,7 @@ import com.badlogic.gdx.Input;
 import com.badlogic.gdx.graphics.g2d.Animation;
 import com.badlogic.gdx.graphics.g2d.TextureRegion;
 import com.mygdx.game.manager.CacheManager;
-import com.mygdx.game.state.IState;
+import com.mygdx.game.player.state.IPlayerState;
 import lombok.Getter;
 import lombok.Setter;
 
@@ -27,7 +27,7 @@ public class Player {
     //状态刷新时间 s
     private float stateTime;
 
-    private IState state;
+    private IPlayerState state;
 
     // 1上 2左 3下 4右
     private int direction;

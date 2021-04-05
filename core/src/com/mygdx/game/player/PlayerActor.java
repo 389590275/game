@@ -10,7 +10,7 @@ import com.badlogic.gdx.utils.Disposable;
 import com.mygdx.game.constants.Constants;
 import com.mygdx.game.manager.CacheManager;
 import com.mygdx.game.stage.GameStage;
-import com.mygdx.game.state.StandState;
+import com.mygdx.game.player.state.StandPlayerState;
 
 /**
  * @author xiangchijie
@@ -20,10 +20,11 @@ public class PlayerActor extends Actor implements Disposable {
 
     private GameStage gameStage;
     private Player player = CacheManager.INSTANCE.player;
+    public static final int PID = 1;
 
     public PlayerActor(GameStage gameStage) {
         this.gameStage = gameStage;
-        player.setState(new StandState());
+        player.setState(new StandPlayerState());
         init();
     }
 
@@ -54,11 +55,6 @@ public class PlayerActor extends Actor implements Disposable {
         float h = (float) Constants.UNIT / currentFrame.getRegionWidth() * currentFrame.getRegionHeight();
         batch.draw(currentFrame, player.getX() - 16, player.getY(),
                 Constants.UNIT * 1.5f, h * 1.5f);
-    }
-
-    @Override
-    public Actor hit(float x, float y, boolean touchable) {
-        return this;
     }
 
     @Override

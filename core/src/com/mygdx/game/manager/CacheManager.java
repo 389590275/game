@@ -1,8 +1,12 @@
 package com.mygdx.game.manager;
 
 import com.mygdx.game.constants.Constants;
-import com.mygdx.game.constants.Res;
+import com.mygdx.game.constants.ResBlock;
+import com.mygdx.game.monster.Monster;
 import com.mygdx.game.player.Player;
+
+import java.util.HashMap;
+import java.util.Map;
 
 /**
  * 缓存管理器
@@ -14,7 +18,15 @@ public class CacheManager {
 
     public static final CacheManager INSTANCE = new CacheManager();
 
+    private int monsterId;
+
     public Player player = new Player();
+
+    public Map<Integer, Monster> monsterMap = new HashMap<>();
+
+    public int getIncMonsterId() {
+        return ++monsterId;
+    }
 
     // y = 10 , x = 16
     public int[][] gameMaps = {
@@ -30,19 +42,29 @@ public class CacheManager {
             {33, 34, 34, 12, 12, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1},
     };
 
+    /**
+     * 目标位置可以通过么
+     *
+     * @param x
+     * @param y
+     * @return
+     */
     public boolean isAccept(int x, int y) {
         if (x < 0 || y < 0)
             return false;
         if (x >= Constants.MAX_X || y >= Constants.MAX_Y)
             return false;
         int blockIndex = gameMaps[y][x];
-        String blockName = Res.Block.blockNames[blockIndex];
-        if (!Res.Block.ROAD_BLOCK.contains(blockName)) {
+        String blockName = ResBlock.blockNames[blockIndex];
+        if (!ResBlock.ROAD_BLOCK.contains(blockName)) {
+            return false;
+        }
+        int monsterId = x * 100 + y;
+        if (monsterMap.containsKey(monsterId)) {
             return false;
         }
         return true;
     }
-
 
 
 }
