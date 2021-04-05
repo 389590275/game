@@ -39,9 +39,12 @@ public class AtkPlayerState implements IPlayerState {
 
     @Override
     public void update() {
-       if(player.getStateTime() > frameNum * 0.1f){
-           player.setState(new StandPlayerState());
-       }
+        if (player.getStateTime() > frameNum * 0.1f) {
+            //击杀怪物
+            int targetMid = (player.getP()[0] + 1) * 100 + player.getP()[1];
+            CacheManager.INSTANCE.monsterMap.remove(targetMid);
+            player.setState(new StandPlayerState());
+        }
     }
 
 }
