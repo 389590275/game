@@ -4,7 +4,6 @@ import com.badlogic.gdx.Application;
 import com.badlogic.gdx.Game;
 import com.badlogic.gdx.Gdx;
 import com.badlogic.gdx.Screen;
-import com.mygdx.game.constants.Res;
 import com.mygdx.game.manager.ResManager;
 import com.mygdx.game.screen.GameScreen;
 import com.mygdx.game.screen.StartScreen;
@@ -21,7 +20,6 @@ public class MainGame extends Game {
         // 设置 log 输出级别
         Gdx.app.setLogLevel(Application.LOG_DEBUG);
         ResManager.load();
-        ResManager.ASSET_MANAGER.get(Res.START_BJ);
         // 创建主游戏场景
         gameScreen = new StartScreen(this);
         // 设置当前场景

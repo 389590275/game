@@ -1,8 +1,6 @@
 package com.mygdx.game.constants;
 
-import com.badlogic.gdx.graphics.g2d.TextureRegion;
 import com.google.common.collect.Sets;
-import com.mygdx.game.manager.ResManager;
 
 import java.util.Set;
 

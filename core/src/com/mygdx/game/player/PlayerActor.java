@@ -9,8 +9,8 @@ import com.badlogic.gdx.scenes.scene2d.InputListener;
 import com.badlogic.gdx.utils.Disposable;
 import com.mygdx.game.constants.Constants;
 import com.mygdx.game.manager.CacheManager;
-import com.mygdx.game.stage.GameStage;
 import com.mygdx.game.player.state.StandPlayerState;
+import com.mygdx.game.stage.GameStage;
 
 /**
  * @author xiangchijie

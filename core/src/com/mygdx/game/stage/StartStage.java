@@ -1,6 +1,12 @@
 package com.mygdx.game.stage;
 
+import com.badlogic.gdx.Gdx;
+import com.badlogic.gdx.graphics.GL20;
+import com.badlogic.gdx.graphics.OrthographicCamera;
 import com.badlogic.gdx.graphics.Texture;
+import com.badlogic.gdx.maps.tiled.TiledMap;
+import com.badlogic.gdx.maps.tiled.TmxMapLoader;
+import com.badlogic.gdx.maps.tiled.renderers.OrthogonalTiledMapRenderer;
 import com.badlogic.gdx.scenes.scene2d.InputEvent;
 import com.badlogic.gdx.scenes.scene2d.ui.Button;
 import com.badlogic.gdx.scenes.scene2d.ui.Image;
@@ -23,6 +29,12 @@ public class StartStage extends BaseStage {
      */
     private Image bgImage;
     private Button startButton;
+
+    //地图
+    private TiledMap map;
+    private OrthogonalTiledMapRenderer renderer;
+    private OrthographicCamera camera;
+
 
     public StartStage(MainGame mainGame, Viewport viewport) {
         super(mainGame, viewport);
@@ -51,6 +63,26 @@ public class StartStage extends BaseStage {
             }
         });
         addActor(startButton);
+
+        //TODO
+        initMapBlock();
     }
 
+    private void initMapBlock() {
+        camera = new OrthographicCamera();
+        TmxMapLoader loader = new TmxMapLoader();
+        map = loader.load(Res.BLOCKS);
+        renderer = new OrthogonalTiledMapRenderer(map, 1 / 32f);
+        camera.setToOrtho(false, 16, 10);
+    }
+
+    @Override
+    public void draw() {
+        Gdx.gl.glClearColor(0.8f, 0.8f, 0.8f, 1.0f);
+        Gdx.gl.glClear(GL20.GL_COLOR_BUFFER_BIT);
+
+        camera.update();
+        renderer.setView(camera);
+        renderer.render();
+    }
 }

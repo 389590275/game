@@ -1,6 +1,5 @@
 package com.mygdx.game.monster.state;
 
-import com.badlogic.gdx.Input;
 import com.badlogic.gdx.graphics.g2d.Animation;
 import com.badlogic.gdx.graphics.g2d.TextureRegion;
 import com.mygdx.game.constants.ResPlayer;

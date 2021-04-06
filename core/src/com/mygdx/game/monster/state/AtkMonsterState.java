@@ -1,13 +1,9 @@
 package com.mygdx.game.monster.state;
 
-import com.badlogic.gdx.Input;
 import com.badlogic.gdx.graphics.g2d.Animation;
 import com.badlogic.gdx.graphics.g2d.TextureRegion;
 import com.mygdx.game.constants.ResPlayer;
-import com.mygdx.game.manager.CacheManager;
 import com.mygdx.game.monster.Monster;
-import com.mygdx.game.player.Player;
-import com.mygdx.game.player.PlayerActor;
 
 /**
  * @author xiangchijie
